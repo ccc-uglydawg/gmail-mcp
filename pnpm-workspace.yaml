@@ -1,0 +1,22 @@
+# pnpm workspace + supply-chain policy.
+# (pnpm's authoritative config for these lives here, not .npmrc.)
+
+# Only these packages may run install/build lifecycle scripts. Everything else
+# is blocked by ignore-scripts (see .npmrc) as a Shai-Hulud-class mitigation.
+# esbuild (a dev-only dependency of tsx) needs its script to link its platform
+# binary — allow just that one.
+allowBuilds:
+  esbuild: true
+
+# Block freshly-published third-party versions for a cooldown window (minutes;
+# 10080 = 7 days), matching the .npmrc min-release-age intent for npm.
+minimumReleaseAge: 10080
+
+# Exceptions to the cooldown:
+#  - tsx: dev-only tooling, deliberately pinned to an exact version.
+#  - hono: a TRANSITIVE dep of @modelcontextprotocol/sdk (its HTTP transport).
+#    We don't select its version and can't pin it; the SDK pulls whatever it
+#    needs, so gating it by age would break installs on every fresh SDK release.
+minimumReleaseAgeExclude:
+  - tsx@4.23.1
+  - hono
