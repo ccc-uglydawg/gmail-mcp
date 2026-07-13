@@ -1,0 +1,47 @@
+{
+  "name": "gmail-mcp",
+  "version": "0.1.0",
+  "description": "Gmail + Google Calendar over MCP (and a CLI). Search, read, send mail and manage calendar events from Claude Desktop, Claude Code, or your shell.",
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@11.13.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "bin": {
+    "gmail": "dist/cli.js",
+    "gmail-mcp": "dist/mcp.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "dev:cli": "tsx src/cli.ts",
+    "dev:mcp": "tsx src/mcp.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "gmail",
+    "google-calendar",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cli",
+    "oauth"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "open": "10.22.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "tsx": "4.23.1",
+    "typescript": "5.11.1"
+  }
+}

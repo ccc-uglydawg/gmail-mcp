@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# local env / secrets — never commit
+.env
+.env.*
+*.local
+
+# the tool's own state dir if someone runs it from the repo
+.gmail-mcp/
+
+# editor / OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
